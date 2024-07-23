@@ -1,7 +1,7 @@
 return {
-  {
-    "hrsh7th/cmp-nvim-lsp"
-  },
+  { "hrsh7th/cmp-nvim-lsp" },
+  { "hrsh7th/cmp-cmdline" },
+  { "hrsh7th/cmp-buffer" },
   {
     "L3MON4D3/LuaSnip",
     dependencies = {
@@ -35,8 +35,23 @@ return {
         sources = cmp.config.sources({
           { name = "nvim_lsp" },
           { name = "luasnip" }, -- For luasnip users.
-        }, {
           { name = "buffer" },
+          { name = "sql" },
+          { name = "path" },
+        }),
+      })
+
+      cmp.setup.cmdline(":", {
+        mapping = cmp.mapping.preset.cmdline(),
+        sources = cmp.config.sources({
+          { name = "path" },
+        }, {
+          {
+            name = "cmdline",
+            option = {
+              ignore_cmds = { "Man", "!" },
+            },
+          },
         }),
       })
     end,
