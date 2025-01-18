@@ -15,6 +15,7 @@ return {
       },
       ["core.concealer"] = {}, -- We added this line!
       ["core.summary"] = {},
+      ["core.export"] = {},
     },
   },
 }
