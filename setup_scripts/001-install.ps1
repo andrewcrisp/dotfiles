@@ -12,3 +12,5 @@ winget install Neovim.Neovim
 #winget install BurntSushi.ripgrep.MSVC
 
 choco install ripgrep -y
+
+cp .\bin\ $HOME\bin\ -R

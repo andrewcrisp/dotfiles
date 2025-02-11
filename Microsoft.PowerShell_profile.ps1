@@ -2,7 +2,7 @@ $clean_detailed = "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/m
 $atomic = "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/atomic.omp.json"
 
 $myconfSource = $atomic
-$configDir = "~/.config/powershell/"
+$configDir = "$HOME\.config\powershell\"
 $myconfFile = Join-Path $configDir oh-my-posh.config.json
 
 if (-not (Test-Path $configDir))
@@ -15,7 +15,7 @@ if (-not (Test-Path $myconfFile))
   Invoke-WebRequest $myconfSource -OutFile $myconfFile
 }
 
-oh-my-posh --init --shell pwsh --config $myconfFile | Invoke-Expression
+oh-my-posh init pwsh --config $myconfFile | Invoke-Expression
 
 if ($host.Name -eq 'ConsoleHost')
 {
@@ -25,4 +25,5 @@ if ($host.Name -eq 'ConsoleHost')
 	Set-PSReadLineOption -PredictionViewStyle ListView
 	Set-PSReadLineOption -EditMode Windows
   Set-Alias -Name vim -Value nvim
+  $env:Path += ";$HOME\bin\powershell\"
 }
