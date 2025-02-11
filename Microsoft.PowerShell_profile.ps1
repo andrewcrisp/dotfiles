@@ -1,9 +1,21 @@
 $clean_detailed = "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/clean-detailed.omp.json"
 $atomic = "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/atomic.omp.json"
 
-$myconf = $atomic
+$myconfSource = $atomic
+$configDir = "$HOME\.config\powershell\"
+$myconfFile = Join-Path $configDir oh-my-posh.config.json
 
-oh-my-posh --init --shell pwsh --config $myconf | Invoke-Expression
+if (-not (Test-Path $configDir))
+{
+  New-Item -Type Directory $configDir 
+}
+
+if (-not (Test-Path $myconfFile))
+{
+  Invoke-WebRequest $myconfSource -OutFile $myconfFile
+}
+
+oh-my-posh init pwsh --config $myconfFile | Invoke-Expression
 
 if ($host.Name -eq 'ConsoleHost')
 {
@@ -12,4 +24,18 @@ if ($host.Name -eq 'ConsoleHost')
 	Set-PSReadLineOption -PredictionSource HistoryAndPlugin
 	Set-PSReadLineOption -PredictionViewStyle ListView
 	Set-PSReadLineOption -EditMode Windows
+  Set-Alias -Name vim -Value nvim
+  $env:Path += ";$HOME\bin\powershell\"
 }
+
+# Import the Chocolatey Profile that contains the necessary code to enable
+# tab-completions to function for `choco`.
+# Be aware that if you are missing these lines from your profile, tab completion
+# for `choco` will not function.
+# See https://ch0.co/tab-completion for details.
+$ChocolateyProfile = "$env:ChocolateyInstall\helpers\chocolateyProfile.psm1"
+if (Test-Path($ChocolateyProfile)) {
+  Import-Module "$ChocolateyProfile"
+}
+
+$env:Path+=";C:\Users\AndrewCrisp\bin\luarocks\"
