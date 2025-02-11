@@ -18,5 +18,8 @@ if (!Test-Path $UserBinDir){
   New-Item -Type Directory $UserBinDir
 }
 curl https://luarocks.github.io/luarocks/releases/luarocks-3.11.1-windows-64.zip --output (Join-Path $UserBinDir "luarocks.zip")
+cd $UserBinDir
+Expand-Archive .\luarocks.zip
+cp .\luarocks-3.11.1-windows-64\luarocks.exe .
 
 cp .\bin\powershell\ $UserBinDir -R
