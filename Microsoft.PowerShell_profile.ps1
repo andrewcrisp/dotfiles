@@ -28,7 +28,7 @@ if ($host.Name -eq 'ConsoleHost')
   $env:Path += ";$HOME\bin\powershell\"
   $env:Path+=";C:\Users\AndrewCrisp\bin\luarocks\"
   $projectsDir = "E:\"
-  $opsDir = Join-Path $projects "Sql_OperationalQueries"
+  $opsDir = Join-Path $projectsDir "Sql_OperationalQueries"
 }
 
 # Import the Chocolatey Profile that contains the necessary code to enable
