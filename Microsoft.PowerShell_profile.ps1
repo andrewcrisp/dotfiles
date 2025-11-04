@@ -26,6 +26,8 @@ if ($host.Name -eq 'ConsoleHost')
 	Set-PSReadLineOption -EditMode Windows
   Set-Alias -Name vim -Value nvim
   $env:Path += ";$HOME\bin\powershell\"
+  $env:Path+=";C:\Users\AndrewCrisp\bin\luarocks\"
+  $projectsDir = "E:\"
 }
 
 # Import the Chocolatey Profile that contains the necessary code to enable
@@ -38,4 +40,3 @@ if (Test-Path($ChocolateyProfile)) {
   Import-Module "$ChocolateyProfile"
 }
 
-$env:Path+=";C:\Users\AndrewCrisp\bin\luarocks\"

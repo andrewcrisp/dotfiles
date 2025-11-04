@@ -14,9 +14,11 @@ winget install Neovim.Neovim
 choco install ripgrep -y
 
 $UserBinDir = Join-Path $HOME "bin"
-if (!Test-Path $UserBinDir){
+if (-not (Test-Path $UserBinDir)){
   New-Item -Type Directory $UserBinDir
 }
 curl https://luarocks.github.io/luarocks/releases/luarocks-3.11.1-windows-64.zip --output (Join-Path $UserBinDir "luarocks.zip")
 
 cp .\bin\powershell\ $UserBinDir -R
+
+cp .\nvim\ $HOME\AppData\Local\ -R -Force
